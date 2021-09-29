@@ -11,7 +11,7 @@ from Sibyl_System.utils import seprate_flags, Flag
 import re
 
 
-url_regex = re.compile("(http(s)?://)?t.me/(c/)?(\w+)/(\d+)")
+url_regex = re.compile(r"(http(s)?://)?t.me/(c/)?(\w+)/(\d+)")
 
 
 def get_data_from_url(url: str) -> tuple:
@@ -201,7 +201,7 @@ async def approve(event, flags):
             ).group(2)
             try:
                 message = re.search(
-                    "(\*\*)?Message:(\*\*)? (.*)", replied.text, re.DOTALL
+                    r"(\*\*)?Message:(\*\*)? (.*)", replied.text, re.DOTALL
                 ).group(3)
             except:
                 message = None
@@ -209,7 +209,7 @@ async def approve(event, flags):
                 bot = (await System.get_entity(id)).bot
             except:
                 bot = False
-            reason = re.search("\*\*Reason:\*\* (.*)", replied.text).group(1)
+            reason = re.search(r"\*\*Reason:\*\* (.*)", replied.text).group(1)
             await System.gban(
                 enforcer=me.id,
                 target=id,
@@ -231,7 +231,7 @@ async def approve(event, flags):
                 reason = " ".join(getattr(flags, "or"))
                 await replied.edit(
                     re.sub(
-                        "(\*\*)?(Scan)? ?Reason:(\*\*)? (`([^`]*)`|.*)",
+                        r"(\*\*)?(Scan)? ?Reason:(\*\*)? (`([^`]*)`|.*)",
                         f'**Scan Reason:** `{reason}`',
                         replied.text,
                     )
@@ -260,7 +260,7 @@ async def approve(event, flags):
                 bot = False
             try:
                 message = re.search(
-                    "(\*\*)?Target Message:(\*\*)? (.*)", replied.text, re.DOTALL
+                    r"(\*\*)?Target Message:(\*\*)? (.*)", replied.text, re.DOTALL
                 ).group(3)
             except:
                 message = None
