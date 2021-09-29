@@ -110,7 +110,7 @@ async def fetch_info(replied_user, event):
     user_bio = "This User has no About" if not user_bio else user_bio
 
     #if user_id != (await event.client.get_me()).id:
-        common_chat = replied_user.common_chats_count
+      if  common_chat = replied_user.common_chats_count
     else:
         common_chat = "I've seen them in... Wow. Are they stalking me? "
         common_chat += "They're in all the same places I am... oh. It's me."
