@@ -129,4 +129,4 @@ async def fetch_info(replied_user, event):
     caption += f"✯ <b>Pᴇʀᴍᴀɴᴇɴᴛ Lɪɴᴋ</b>: "
     caption += f'<a href="tg://user?id={user_id}">{first_name}</a>'
 
-    return captionwhoisv2.py
+    return whoisv2
