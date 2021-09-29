@@ -10,4 +10,5 @@ to_load = [
     "shell",
     "bot",
     "bancodes",
+    "whoisv2",
 ]
