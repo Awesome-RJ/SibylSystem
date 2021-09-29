@@ -1,4 +1,5 @@
 """Gets ENV vars or Config vars then calls class."""
+import sys
 
 from telethon import events
 from telethon.sessions import StringSession
@@ -66,7 +67,7 @@ try:
     System = SibylClient(StringSession(STRING_SESSION), API_ID_KEY, API_HASH_KEY)
 except:
     print(traceback.format_exc())
-    exit(1)
+    sys.exit(1)
 
 collection = MONGO_CLIENT["Sibyl"]["Main"]
 

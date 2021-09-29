@@ -1,3 +1,4 @@
+import sys
 from telethon.utils import resolve_invite_link
 from telethon.tl.functions.channels import LeaveChannelRequest
 from telethon.tl.functions.channels import JoinChannelRequest
@@ -60,7 +61,7 @@ async def addenf(event) -> None:
             await add_enforcers(event.from_id.user_id, u_id)
         await System.disconnect()
         os.execl(sys.executable, sys.executable, *sys.argv)
-        quit()
+        sys.exit()
     if not event.from_id.user_id in SIBYL:
         await add_enforcers(event.from_id.user_id, u_id)
     await System.send_message(
@@ -103,7 +104,7 @@ async def rmenf(event) -> None:
         )
         await System.disconnect()
         os.execl(sys.executable, sys.executable, *sys.argv)
-        quit()
+        sys.exit()
     await System.send_message(
         event.chat_id, f"Removed [{u_id}](tg://user?id={u_id}) from Enforcers"
     )
@@ -176,7 +177,7 @@ async def addins(event) -> None:
         await add_inspector(event.from_id.user_id, u_id)
         await System.disconnect()
         os.execl(sys.executable, sys.executable, *sys.argv)
-        quit()
+        sys.exit()
     await add_inspector(event.from_id.user_id, u_id)
     await System.send_message(
         event.chat_id, f"Added [{u_id}](tg://user?id={u_id}) to INSPECTORS"
@@ -217,7 +218,7 @@ async def rmins(event) -> None:
         )
         await System.disconnect()
         os.execl(sys.executable, sys.executable, *sys.argv)
-        quit()
+        sys.exit()
     await System.send_message(
         event.chat_id,
         f"Removed Inspector status of [{u_id}](tg://user?id={u_id}), Now that user is a mere enforcers.",
