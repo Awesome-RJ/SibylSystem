@@ -120,10 +120,7 @@ async def scan(event, flags):
         target = replied.sender.id
     executer = await event.get_sender()
     req_proof = req_user = False
-    if flags.f and executer.id in INSPECTORS:
-        approve = True
-    else:
-        approve = False
+    approve = bool(flags.f and executer.id in INSPECTORS)
     if replied.media:
         await replied.forward_to(Sibyl_logs)
     executor = f"[{executer.first_name}](tg://user?id={executer.id})"
