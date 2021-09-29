@@ -86,7 +86,7 @@ async def get_user(event):
 
 async def fetch_info(replied_user, event):
     """ Get details from the User object. """
-    user_id = replied_user.user.id
+   # user_id = replied_user.user.id
     first_name = replied_user.user.first_name
     last_name = replied_user.user.last_name
     username = replied_user.user.username
