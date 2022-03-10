@@ -9,8 +9,7 @@ async def extract(flag, event):
     if flag:
         return re.escape(flag.group(1))
     try:
-        text = event.text.split(" ", 1)[1]
-        return text
+        return event.text.split(" ", 1)[1]
     except BaseException:
         return False
 
@@ -88,7 +87,7 @@ async def auto_gban_request(event):
     words = await db.get_blacklist()
     if words:
         for word in words:
-            pattern = r"( |^|[^\w])" + word + r"( |$|[^\w])"
+            pattern = f"( |^|[^\\w]){word}( |$|[^\\w])"
             if re.search(pattern, text, flags=re.IGNORECASE):
                 c = words.index(word)
                 link = (
@@ -115,9 +114,9 @@ async def auto_wlc_gban(event):
     if words:
         text = user.first_name
         if user.last_name:
-            text = text + " " + user.last_name
+            text = f'{text} {user.last_name}'
         for word in words:
-            pattern = r"( |^|[^\w])" + word + r"( |$|[^\w])"
+            pattern = f"( |^|[^\\w]){word}( |$|[^\\w])"
             if re.search(pattern, text, flags=re.IGNORECASE):
                 c = words.index(word)
                 logmsg = f"""$AUTOSCAN\n**Scanned user:** [{user.id}](tg://user?id={user.id})\n**Reason:** 1x{c}\n**User joined and blacklisted string in name**\n**Matched String:** {word}\n"""
@@ -141,8 +140,7 @@ async def get(event):
         words = await wlc_collection.get_wlc_bl()
     else:
         return
-    which = re.match(r".get (\d)x(\d+)", event.text)
-    if which:
+    if which := re.match(r".get (\d)x(\d+)", event.text):
         try:
             await event.reply(
                 f"Info from type {which.group(1)}\nPostion: {which.group(2)}\nMatches:{words[int(which.group(2))]}"
